@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚨 Emergency Response Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚨 Emergency Response Assistant</h1>
+            <p>Speak your emergency and we'll classify and alert the right people</p>
+        </header>
+
+        <main>
+            <!-- Emergency Status -->
+            <div id="status" class="status-panel">
+                <div class="status-indicator" id="statusIndicator">🟢 Ready</div>
+                <div class="status-text" id="statusText">Click the microphone to report an emergency</div>
+            </div>
+
+            <!-- Voice Input Section -->
+            <div class="voice-section">
+                <button id="micButton" class="mic-button" onclick="toggleRecording()">
+                    <span id="micIcon">🎤</span>
+                    <span id="micText">Start Recording</span>
+                </button>
+                
+                <div id="transcript" class="transcript-box">
+                    <p class="placeholder-text">Your voice transcript will appear here...</p>
+                </div>
+            </div>
+
+            <!-- Emergency Classification -->
+            <div id="classificationPanel" class="classification-panel" style="display: none;">
+                <h3>🏷️ Emergency Classification</h3>
+                <div class="classification-grid">
+                    <div class="classification-item">
+                        <strong>Type:</strong> <span id="emergencyType">-</span>
+                    </div>
+                    <div class="classification-item">
+                        <strong>Urgency:</strong> <span id="emergencyUrgency">-</span>
+                    </div>
+                    <div class="classification-item">
+                        <strong>Location:</strong> <span id="emergencyLocation">-</span>
+                    </div>
+                    <div class="classification-item">
+                        <strong>Keywords:</strong> <span id="emergencyKeywords">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location Section -->
+            <div class="location-section">
+                <h3>📍 Location Information</h3>
+                <button id="locationButton" onclick="getLocation()">Get Current Location</button>
+                <div id="locationInfo" class="location-info">
+                    <p>Location not detected. Click button above to share your location.</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-section">
+                <button id="processButton" class="action-button primary" onclick="processEmergency()" disabled>
+                    📤 Process Emergency
+                </button>
+                <button id="testButton" class="action-button secondary" onclick="testAlert()">
+                    🧪 Test Alert System
+                </button>
+                <button id="clearButton" class="action-button" onclick="clearAll()">
+                    🗑️ Clear All
+                </button>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsPanel" class="results-panel" style="display: none;">
+                <h3>📋 Emergency Processing Results</h3>
+                <div id="resultsContent"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>⚠️ For immediate life-threatening emergencies, call 911 directly</p>
+            <p>This system is designed to assist with emergency classification and notification</p>
+        </footer>
+    </div>
+
+    <!-- ✅ Proper placement of CSS & JS -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
